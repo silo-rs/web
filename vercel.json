@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "https://github.com/silo-rs/silo/releases/latest/download/silo-installer.sh",
+      "destination": "https://raw.githubusercontent.com/silo-rs/silo/refs/heads/main/install.sh",
       "statusCode": 302,
       "has": [{ "type": "host", "value": "setup.silo.rs" }]
     }
