@@ -24,6 +24,29 @@ export default function GuidesPage() {
         to reach the right IP on their own. These patterns help.
       </p>
 
+      {/* AI & parallel dev */}
+      <section style={{ marginBottom: "3rem" }}>
+        <h2 style={heading}>Parallel AI coding</h2>
+        <p style={muted}>
+          Tools like <a href="https://github.com/silo-rs/vibe-kanban">vibe-kanban</a> spawn
+          multiple AI agents that each work on a separate branch. Every agent
+          needs its own dev server&mdash;on the same port.
+        </p>
+        <p style={{ ...muted, marginTop: "0.75rem" }}>
+          Wrap the dev command with silo and each agent gets an isolated
+          loopback IP. No port&nbsp;conflicts, no configuration:
+        </p>
+        <pre style={{ ...code, color: "var(--text-muted)" }}>
+          {`agent-1 (feature-auth)  $ silo npm run dev   # 127.0.1.1:3000
+agent-2 (feature-cart)  $ silo npm run dev   # 127.0.1.2:3000
+agent-3 (fix-header)    $ silo npm run dev   # 127.0.1.3:3000`}
+        </pre>
+        <p style={muted}>
+          Silo pairs naturally with any tool that creates worktrees for
+          parallel development&mdash;AI-driven or otherwise.
+        </p>
+      </section>
+
       {/* Multi-service */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Multi-service</h2>

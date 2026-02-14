@@ -117,6 +117,12 @@ worktree-b $ silo npm run dev
         {/* Docs */}
         <section style={{ marginTop: "3rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <Link href="/docs/guides" className="card">
+              <span style={{ fontSize: "13px" }}>guides</span>
+              <p style={{ fontSize: "13px", margin: 0 }}>
+                browser access, databases, and other things outside the silo session.
+              </p>
+            </Link>
             <Link href="/docs/worktrees" className="card">
               <span style={{ fontSize: "13px" }}>git worktrees</span>
               <p style={{ fontSize: "13px", margin: 0 }}>
@@ -127,12 +133,6 @@ worktree-b $ silo npm run dev
               <span style={{ fontSize: "13px" }}>how it works</span>
               <p style={{ fontSize: "13px", margin: 0 }}>
                 IP hashing, syscall interception, and the preload/eBPF backends.
-              </p>
-            </Link>
-            <Link href="/docs/reference" className="card">
-              <span style={{ fontSize: "13px" }}>cli reference</span>
-              <p style={{ fontSize: "13px", margin: 0 }}>
-                commands, flags, and environment variables.
               </p>
             </Link>
           </div>
