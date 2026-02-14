@@ -17,6 +17,11 @@ export function ThemeToggle() {
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem("theme", next ? "dark" : "light");
+    const logo = next ? "/logo-light.png" : "/logo.png";
+    const iconLink = document.querySelector('link[rel="icon"]');
+    if (iconLink) iconLink.setAttribute("href", logo);
+    const appleLink = document.querySelector('link[rel="apple-touch-icon"]');
+    if (appleLink) appleLink.setAttribute("href", logo);
   };
 
   if (!mounted) return null;
@@ -34,7 +39,7 @@ export function ThemeToggle() {
         alignItems: "center",
       }}
     >
-      {dark ? <Sun size={14} /> : <Moon size={14} />}
+      {dark ? <Moon size={14} /> : <Sun size={14} />}
     </button>
   );
 }

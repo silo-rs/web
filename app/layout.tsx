@@ -60,9 +60,15 @@ const jsonLd = {
 
 const themeScript = `
   try {
-    if (localStorage.getItem('theme') === 'dark') {
+    var isDark = localStorage.getItem('theme') === 'dark';
+    if (isDark) {
       document.documentElement.classList.add('dark');
     }
+    var logo = isDark ? '/logo-light.png' : '/logo.png';
+    var iconLink = document.querySelector('link[rel="icon"]');
+    if (iconLink) iconLink.href = logo;
+    var appleLink = document.querySelector('link[rel="apple-touch-icon"]');
+    if (appleLink) appleLink.href = logo;
   } catch (e) {}
 `;
 

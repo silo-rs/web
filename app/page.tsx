@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { InstallScript } from "./install-script";
 import { ThemeToggle } from "./theme-toggle";
+import { Logo } from "./logo";
 
 export const metadata: Metadata = {
   alternates: {
@@ -52,11 +53,12 @@ export default function Home() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "baseline",
+            alignItems: "center",
+            fontSize: "13px",
             marginBottom: "3rem",
           }}
         >
-          <h1 style={{ fontSize: "14px", fontWeight: 400 }}>silo</h1>
+          <Logo />
           <ThemeToggle />
         </div>
 

@@ -44,3 +44,37 @@ a.card span {
   text-decoration-color: var(--text-dimmed);
   text-underline-offset: 3px;
 }
+
+.site-logo {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+}
+
+nav.breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-dimmed);
+}
+
+nav.breadcrumb a {
+  text-decoration: none;
+}
+
+.site-logo-light {
+  display: none;
+}
+
+.site-logo-dark {
+  display: inline-block;
+}
+
+.dark .site-logo-light {
+  display: inline-block;
+}
+
+.dark .site-logo-dark {
+  display: none;
+}

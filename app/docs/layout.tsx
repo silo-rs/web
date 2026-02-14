@@ -3,14 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/app/theme-toggle";
+import { Logo } from "@/app/logo";
 
 const segments: Record<string, string> = {
-  worktrees: "Git Worktrees",
-  "how-it-works": "How it works",
-  reference: "CLI Reference",
-  troubleshooting: "Troubleshooting",
-  ecosystem: "Ecosystem",
-  guides: "Guides",
+  worktrees: "git worktrees",
+  "how-it-works": "how it works",
+  reference: "cli reference",
+  troubleshooting: "troubleshooting",
+  ecosystem: "ecosystem",
+  guides: "guides",
 };
 
 export default function DocsLayout({
@@ -39,12 +40,12 @@ export default function DocsLayout({
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "baseline",
+            alignItems: "center",
             marginBottom: "3rem",
           }}
         >
-          <nav style={{ fontSize: "13px", color: "var(--text-dimmed)" }}>
-            <Link href="/">silo</Link>
+          <nav className="breadcrumb">
+            <Logo />
             <span style={{ margin: "0 0.5rem" }}>/</span>
             <Link href="/docs" style={{ color: title ? "var(--text-dimmed)" : "var(--text-muted)" }}>
               docs
