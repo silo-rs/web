@@ -1,3 +1,21 @@
+:root {
+  --bg: #fff;
+  --text: #000;
+  --text-muted: #666;
+  --text-dimmed: #999;
+  --bg-code: #f5f5f5;
+  --border: #eee;
+}
+
+.dark {
+  --bg: #111;
+  --text: #e5e5e5;
+  --text-muted: #aaa;
+  --text-dimmed: #666;
+  --bg-code: #1a1a1a;
+  --border: #333;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +23,8 @@
 }
 
 body {
-  background: #fff;
-  color: #000;
+  background: var(--bg);
+  color: var(--text);
 }
 
 a {

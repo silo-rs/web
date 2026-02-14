@@ -19,7 +19,7 @@ export function InstallScript() {
       style={{
         margin: "2rem 0",
         padding: "0.75rem 1rem",
-        background: "#f5f5f5",
+        background: "var(--bg-code)",
         borderRadius: "8px",
         display: "flex",
         alignItems: "center",
@@ -28,14 +28,14 @@ export function InstallScript() {
         fontSize: "13px",
       }}
     >
-      <code style={{ color: "#666" }}>{command}</code>
+      <code style={{ color: "var(--text-muted)" }}>{command}</code>
       <button
         onClick={copy}
         style={{
           background: "none",
           border: "none",
           cursor: "pointer",
-          color: "#999",
+          color: "var(--text-dimmed)",
           padding: 0,
           display: "flex",
           alignItems: "center",
