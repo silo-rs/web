@@ -107,7 +107,12 @@ silo env --json | jq .SILO_IP`}
 127.120.134.3
 
 $ silo ip --json
-{"ip":"127.120.134.3","name":"main","hostname":"main.myapp.silo","dir":"/home/user/myapp"}`}
+{
+  "ip": "127.120.134.3",
+  "name": "main",
+  "hostname": "main.myapp.silo",
+  "dir": "/home/user/myapp"
+}`}
         </pre>
       </section>
 
@@ -138,12 +143,12 @@ $ silo ip --json
         </p>
         <pre style={{ ...code, color: "var(--text-muted)" }}>
           {`$ silo doctor
-  ✓ silo        v0.2.4
-  ✓ os          macOS 15.2
-  ✓ git         git version 2.47.1
-  ✓ sudoers     /etc/sudoers.d/silo configured
-  ✓ bind lib    /Users/you/.silo/lib/libsilo_bind.dylib
-  ✓ hosts       3 silo entry(ies) in /etc/hosts`}
+  ✓ silo: v0.2.4
+  ✓ os: macOS 15.2
+  ✓ git: git version 2.47.1
+  ✓ sudoers: /etc/sudoers.d/silo configured
+  ✓ bind lib: /Users/you/.silo/lib/libsilo_bind.dylib
+  ✓ hosts: 3 silo entry(ies) in /etc/hosts`}
         </pre>
       </section>
 

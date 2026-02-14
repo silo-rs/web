@@ -43,15 +43,13 @@ export default function HowItWorksPage() {
           <code>127.0.0.0/8</code> range.
         </p>
         <pre style={{ ...code, color: "var(--text-muted)" }}>
-          {`input:  /home/user/myapp + "feature-auth"
-          ↓ FNV-1a
-hash:   0x7F_78_86_03
-          ↓
-ip:     127.120.134.3`}
+          {`input:  /home/user/project + "feature-auth"
+          ↓ FNV-1a → mod 127.0.0.0/8
+ip:     127.185.176.25`}
         </pre>
         <p style={muted}>
           The first octet is always 127. Octets 2 and 4 are clamped to
-          1–254 to avoid broadcast and zero addresses. This gives ~16.7
+          1–254 to avoid broadcast and zero addresses. This gives ~16.5
           million unique addresses, more than enough for any machine.
         </p>
         <p style={{ ...muted, marginTop: "0.75rem" }}>
@@ -66,13 +64,13 @@ ip:     127.120.134.3`}
         <p style={muted}>Before executing your command, silo:</p>
         <pre style={{ ...code, color: "var(--text-muted)" }}>
           {`# Add a loopback alias (macOS)
-sudo ifconfig lo0 alias 127.120.134.3 netmask 255.0.0.0
+sudo ifconfig lo0 alias 127.185.176.25 netmask 255.0.0.0
 
 # Add a loopback alias (Linux)
-sudo ip addr add 127.120.134.3/8 dev lo
+sudo ip addr add 127.185.176.25/8 dev lo
 
 # Add /etc/hosts entry
-127.120.134.3   feature-auth.myapp.silo   # /home/user/myapp`}
+127.185.176.25   feature-auth.project.silo   # /home/user/project`}
         </pre>
         <p style={muted}>
           Passwordless sudo is configured once via{" "}

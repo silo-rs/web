@@ -26,7 +26,7 @@ const faqItems = [
   {
     question: "IP collision between worktrees",
     answer:
-      "The FNV-1a hash has ~16.7 million possible addresses. Collisions are rare but possible. Override with: silo run --ip 127.0.99.1 -- npm run dev",
+      "The FNV-1a hash has ~16.5 million possible addresses. Collisions are rare but possible. Override with: silo run --ip 127.0.99.1 -- npm run dev",
   },
   {
     question: "Statically linked binaries are not intercepted",
@@ -152,7 +152,7 @@ silo prune --all`}
           IP collision between worktrees
         </h2>
         <p style={muted}>
-          The FNV-1a hash has ~16.7 million possible addresses in{" "}
+          The FNV-1a hash has ~16.5 million possible addresses in{" "}
           <code>127.0.0.0/8</code>. Collisions are rare but possible. If two
           worktrees get the same IP, override one:
         </p>
@@ -160,8 +160,8 @@ silo prune --all`}
           {`silo run --ip 127.0.99.1 -- npm run dev`}
         </pre>
         <p style={muted}>
-          <code>silo doctor</code> will also warn about hostname collisions
-          in <code>/etc/hosts</code>.
+          <code>silo run</code> will also warn about IP collisions
+          in <code>/etc/hosts</code> at startup.
         </p>
       </section>
 
