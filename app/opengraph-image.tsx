@@ -7,7 +7,15 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const logoBuffer = await readFile(join(process.cwd(), "public", "logo.png"));
+  const [logoBuffer, geistMono] = await Promise.all([
+    readFile(join(process.cwd(), "public", "logo.png")),
+    readFile(
+      join(
+        process.cwd(),
+        "node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.ttf"
+      )
+    ),
+  ]);
   const logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
 
   return new ImageResponse(
@@ -21,7 +29,7 @@ export default async function Image() {
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "#0a0a0a",
-          fontFamily: "monospace",
+          fontFamily: "Geist Mono",
           color: "#e5e5e5",
         }}
       >
@@ -69,6 +77,16 @@ export default async function Image() {
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Geist Mono",
+          data: geistMono,
+          style: "normal" as const,
+          weight: 400,
+        },
+      ],
+    }
   );
 }
