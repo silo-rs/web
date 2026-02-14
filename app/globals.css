@@ -29,4 +29,18 @@ body {
 
 a {
   color: inherit;
+  text-decoration-color: var(--text-dimmed);
+  text-underline-offset: 3px;
+}
+
+a.card {
+  text-decoration: none;
+  color: var(--text-dimmed);
+}
+
+a.card span {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--text-dimmed);
+  text-underline-offset: 3px;
 }

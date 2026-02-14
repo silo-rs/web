@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "docs | silo",
+  title: "Docs",
   description:
     "Guides for using silo. Transparent port isolation for dev servers and git worktrees.",
+  alternates: { canonical: "/docs" },
+  openGraph: { url: "/docs" },
 };
 
 const pages = [
-  { href: "/docs/worktrees", title: "Git Worktrees", desc: "Why port conflicts happen in worktrees and how silo fixes them." },
-  { href: "/docs/reference", title: "CLI Reference", desc: "Commands, flags, and environment variables." },
-  { href: "/docs/how-it-works", title: "How it works", desc: "IP hashing, syscall interception, and the preload/eBPF backends." },
-  { href: "/docs/ecosystem", title: "Ecosystem", desc: "Tools that create git worktrees for parallel development." },
-  { href: "/docs/troubleshooting", title: "Troubleshooting", desc: "Common issues and fixes." },
+  { href: "/docs/worktrees", title: "git worktrees", desc: "why port conflicts happen in worktrees and how silo fixes them." },
+  { href: "/docs/guides", title: "guides", desc: "browser access, databases, and other things outside the silo session." },
+  { href: "/docs/ecosystem", title: "ecosystem", desc: "tools that create git worktrees for parallel development." },
+  { href: "/docs/how-it-works", title: "how it works", desc: "IP hashing, syscall interception, and the preload/eBPF backends." },
+  { href: "/docs/troubleshooting", title: "troubleshooting", desc: "common issues and fixes." },
 ];
 
 
@@ -25,12 +28,12 @@ export default function DocsIndex() {
       <section>
         <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
           {pages.map((item) => (
-            <a key={item.href} href={item.href} style={{ textDecoration: "none" }}>
-              <strong style={{ color: "var(--text-muted)", fontSize: "13px" }}>{item.title}</strong>
-              <p style={{ color: "var(--text-dimmed)", fontSize: "13px", margin: 0 }}>
+            <Link key={item.href} href={item.href} className="card">
+              <span style={{ fontSize: "13px" }}>{item.title}</span>
+              <p style={{ fontSize: "13px", margin: 0 }}>
                 {item.desc}
               </p>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

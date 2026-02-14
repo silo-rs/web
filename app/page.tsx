@@ -1,9 +1,42 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { InstallScript } from "./install-script";
 import { ThemeToggle } from "./theme-toggle";
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: "/",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "silo",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "macOS, Linux",
+  url: "https://www.silo.rs",
+  downloadUrl: "https://github.com/silo-rs/silo",
+  description:
+    "Transparent port isolation for git worktrees. Run the same app on the same port, simultaneously -- across branches, worktrees, or AI agents.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
+
 export default function Home() {
   return (
-    <main
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <main
       style={{
         minHeight: "100dvh",
         display: "flex",
@@ -20,7 +53,7 @@ export default function Home() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "baseline",
-            marginBottom: "2rem",
+            marginBottom: "3rem",
           }}
         >
           <h1 style={{ fontSize: "14px", fontWeight: 400 }}>silo</h1>
@@ -39,7 +72,7 @@ export default function Home() {
             padding: "0.75rem 1rem",
             background: "var(--bg-code)",
             borderRadius: "8px",
-            color: "var(--text-dimmed)",
+            color: "var(--text-muted)",
             fontSize: "13px",
           }}
         >
@@ -82,24 +115,24 @@ worktree-b $ silo npm run dev
         {/* Docs */}
         <section style={{ marginTop: "3rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <a href="/docs/worktrees" style={{ textDecoration: "none" }}>
-              <strong style={{ color: "var(--text-muted)", fontSize: "13px" }}>Git Worktrees</strong>
-              <p style={{ color: "var(--text-dimmed)", fontSize: "13px", margin: 0 }}>
-                Why port conflicts happen in worktrees and how silo fixes them.
+            <Link href="/docs/worktrees" className="card">
+              <span style={{ fontSize: "13px" }}>git worktrees</span>
+              <p style={{ fontSize: "13px", margin: 0 }}>
+                why port conflicts happen in worktrees and how silo fixes them.
               </p>
-            </a>
-            <a href="/docs/how-it-works" style={{ textDecoration: "none" }}>
-              <strong style={{ color: "var(--text-muted)", fontSize: "13px" }}>How it works</strong>
-              <p style={{ color: "var(--text-dimmed)", fontSize: "13px", margin: 0 }}>
+            </Link>
+            <Link href="/docs/how-it-works" className="card">
+              <span style={{ fontSize: "13px" }}>how it works</span>
+              <p style={{ fontSize: "13px", margin: 0 }}>
                 IP hashing, syscall interception, and the preload/eBPF backends.
               </p>
-            </a>
-            <a href="/docs/reference" style={{ textDecoration: "none" }}>
-              <strong style={{ color: "var(--text-muted)", fontSize: "13px" }}>CLI Reference</strong>
-              <p style={{ color: "var(--text-dimmed)", fontSize: "13px", margin: 0 }}>
-                Commands, flags, and environment variables.
+            </Link>
+            <Link href="/docs/reference" className="card">
+              <span style={{ fontSize: "13px" }}>cli reference</span>
+              <p style={{ fontSize: "13px", margin: 0 }}>
+                commands, flags, and environment variables.
               </p>
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -114,9 +147,10 @@ worktree-b $ silo npm run dev
         >
           <a href="https://github.com/silo-rs/silo">github</a>
           <span style={{ margin: "0 0.5rem" }}>/</span>
-          <a href="/docs">all docs</a>
+          <Link href="/docs">all docs</Link>
         </div>
       </div>
     </main>
+    </>
   );
 }

@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import { code, muted, heading } from "@/app/docs/styles";
+import { BreadcrumbJsonLd } from "@/app/docs/json-ld";
 
 export const metadata: Metadata = {
-  title: "How silo Works | silo",
+  title: "How silo Works",
   description:
     "How silo intercepts syscalls to give each git worktree a unique loopback IP. LD_PRELOAD, eBPF, and the FNV-1a hash.",
+  alternates: { canonical: "/docs/how-it-works" },
+  openGraph: { url: "/docs/how-it-works" },
 };
 
 export default function HowItWorksPage() {
   return (
     <article>
+      <BreadcrumbJsonLd slug="how-it-works" title="How it works" />
       <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
         How it works
       </h1>
@@ -185,53 +189,19 @@ silo ./my-static-binary`}
       {/* Limitations */}
       <section>
         <h2 style={heading}>Limitations</h2>
-        <table
-          style={{
-            width: "100%",
-            marginTop: "0.5rem",
-            fontSize: "13px",
-            borderCollapse: "collapse",
-          }}
-        >
-          <tbody style={muted}>
-            <tr>
-              <td style={{ padding: "0.35rem 0", verticalAlign: "top", whiteSpace: "nowrap" }}>
-                Static binaries
-              </td>
-              <td style={{ padding: "0.35rem 0", verticalAlign: "top" }}>
-                Preload can&apos;t intercept statically linked binaries. Use
-                eBPF on Linux, or <code>CGO_ENABLED=1</code> for Go.
-              </td>
-            </tr>
-            <tr>
-              <td style={{ padding: "0.35rem 0", verticalAlign: "top", whiteSpace: "nowrap" }}>
-                Non-git directories
-              </td>
-              <td style={{ padding: "0.35rem 0", verticalAlign: "top" }}>
-                Silo needs a git repo to compute the IP. Use{" "}
-                <code>--ip</code> for non-git dirs.
-              </td>
-            </tr>
-            <tr>
-              <td style={{ padding: "0.35rem 0", verticalAlign: "top", whiteSpace: "nowrap" }}>
-                macOS SIP
-              </td>
-              <td style={{ padding: "0.35rem 0", verticalAlign: "top" }}>
-                System binaries strip <code>DYLD_INSERT_LIBRARIES</code>.
-                Install shells via Homebrew.
-              </td>
-            </tr>
-            <tr>
-              <td style={{ padding: "0.35rem 0", verticalAlign: "top", whiteSpace: "nowrap" }}>
-                IPv4 only
-              </td>
-              <td style={{ padding: "0.35rem 0", verticalAlign: "top" }}>
-                Silo assigns IPs in <code>127.0.0.0/8</code>. Pure IPv6
-                listeners are converted to IPv4-mapped addresses.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div style={{ marginTop: "0.5rem", fontSize: "13px", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+          {[
+            { label: "Static binaries", desc: <>Preload can&apos;t intercept statically linked binaries. Use eBPF on Linux, or <code>CGO_ENABLED=1</code> for Go.</> },
+            { label: "Non-git directories", desc: <>Silo needs a git repo to compute the IP. Use <code>--ip</code> for non-git dirs.</> },
+            { label: "macOS SIP", desc: <>System binaries strip <code>DYLD_INSERT_LIBRARIES</code>. Install shells via Homebrew.</> },
+            { label: "IPv4 only", desc: <>Silo assigns IPs in <code>127.0.0.0/8</code>. Pure IPv6 listeners are converted to IPv4-mapped addresses.</> },
+          ].map(({ label, desc }) => (
+            <div key={label}>
+              <div style={{ color: "var(--text-muted)", fontWeight: 600 }}>{label}</div>
+              <div style={{ color: "var(--text-dimmed)" }}>{desc}</div>
+            </div>
+          ))}
+        </div>
       </section>
     </article>
   );

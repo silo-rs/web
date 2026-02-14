@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import { InstallScript } from "@/app/install-script";
 import { code, muted, heading } from "@/app/docs/styles";
+import { BreadcrumbJsonLd } from "@/app/docs/json-ld";
 
 export const metadata: Metadata = {
-  title: "Git Worktrees without Port Conflicts | silo",
+  title: "Git Worktrees without Port Conflicts",
   description:
     "Run dev servers in multiple git worktrees simultaneously without port conflicts. Each worktree gets its own loopback IP. No config, no containers.",
+  alternates: { canonical: "/docs/worktrees" },
+  openGraph: { url: "/docs/worktrees" },
 };
 
 export default function WorktreesGuide() {
   return (
     <article>
+      <BreadcrumbJsonLd slug="worktrees" title="Git Worktrees" />
       <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
         Git Worktrees without Port Conflicts
       </h1>

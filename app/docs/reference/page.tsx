@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { code, muted, heading } from "@/app/docs/styles";
+import { BreadcrumbJsonLd } from "@/app/docs/json-ld";
 
 export const metadata: Metadata = {
-  title: "CLI Reference | silo",
+  title: "CLI Reference",
   description:
     "Complete reference for silo commands, flags, and environment variables.",
+  alternates: { canonical: "/docs/reference" },
+  openGraph: { url: "/docs/reference" },
 };
 
 const h2 = { ...heading, marginTop: "2rem" };
@@ -22,6 +25,7 @@ const cellCode: React.CSSProperties = {
 export default function ReferencePage() {
   return (
     <article>
+      <BreadcrumbJsonLd slug="reference" title="CLI Reference" />
       <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
         CLI Reference
       </h1>

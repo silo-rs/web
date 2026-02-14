@@ -1,15 +1,63 @@
 import type { Metadata } from "next";
 import { code, muted, heading } from "@/app/docs/styles";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/app/docs/json-ld";
+
+const faqItems = [
+  {
+    question: 'macOS: "running SIP-protected binary"',
+    answer:
+      "macOS strips DYLD_INSERT_LIBRARIES from binaries in /usr/bin, /bin, etc. Install a shell via Homebrew (brew install bash or brew install zsh) and silo will use it automatically.",
+  },
+  {
+    question: '"password required" on every run',
+    answer:
+      "Silo needs sudo for adding loopback IP aliases and writing to /etc/hosts. Run 'sudo rm /etc/sudoers.d/silo' then 'silo doctor' to re-trigger passwordless setup.",
+  },
+  {
+    question: '"not a git repository"',
+    answer:
+      "Silo derives the session IP from the git directory. Use --ip to set an address manually in non-git directories: silo run --ip 127.0.5.1 -- npm run dev",
+  },
+  {
+    question: "Port still in use after stopping a server",
+    answer:
+      "IP aliases and /etc/hosts entries persist intentionally to avoid setup overhead. Run 'silo prune' to remove aliases with no listening ports, or 'silo prune --all' to remove everything.",
+  },
+  {
+    question: "IP collision between worktrees",
+    answer:
+      "The FNV-1a hash has ~16.7 million possible addresses. Collisions are rare but possible. Override with: silo run --ip 127.0.99.1 -- npm run dev",
+  },
+  {
+    question: "Statically linked binaries are not intercepted",
+    answer:
+      "The preload backend only works with dynamically linked binaries. On Linux, use the eBPF backend (sudo silo setup-ebpf). On macOS, use CGO_ENABLED=1 or bind to $SILO_IP directly.",
+  },
+  {
+    question: '"already inside a silo session"',
+    answer:
+      "Nesting silo sessions is not supported. The inner session would override the outer one. Remove the SILO_IP environment variable if it was set accidentally.",
+  },
+  {
+    question: "Linux: eBPF setup",
+    answer:
+      "The eBPF backend requires cgroup v2 and kernel 5.8+. Run 'silo doctor' to check availability, then 'sudo silo setup-ebpf' to enable it. After setup, silo uses eBPF automatically.",
+  },
+];
 
 export const metadata: Metadata = {
-  title: "Troubleshooting | silo",
+  title: "Troubleshooting",
   description:
     "Common issues and fixes for silo. SIP warnings, sudoers setup, port conflicts, and more.",
+  alternates: { canonical: "/docs/troubleshooting" },
+  openGraph: { url: "/docs/troubleshooting" },
 };
 
 export default function TroubleshootingPage() {
   return (
     <article>
+      <BreadcrumbJsonLd slug="troubleshooting" title="Troubleshooting" />
+      <FaqJsonLd items={faqItems} />
       <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
         Troubleshooting
       </h1>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/app/theme-toggle";
 
@@ -9,6 +10,7 @@ const segments: Record<string, string> = {
   reference: "CLI Reference",
   troubleshooting: "Troubleshooting",
   ecosystem: "Ecosystem",
+  guides: "Guides",
 };
 
 export default function DocsLayout({
@@ -42,11 +44,11 @@ export default function DocsLayout({
           }}
         >
           <nav style={{ fontSize: "13px", color: "var(--text-dimmed)" }}>
-            <a href="/">silo</a>
+            <Link href="/">silo</Link>
             <span style={{ margin: "0 0.5rem" }}>/</span>
-            <a href="/docs" style={{ color: title ? "var(--text-dimmed)" : "var(--text-muted)" }}>
+            <Link href="/docs" style={{ color: title ? "var(--text-dimmed)" : "var(--text-muted)" }}>
               docs
-            </a>
+            </Link>
             {title && (
               <>
                 <span style={{ margin: "0 0.5rem" }}>/</span>
@@ -69,7 +71,7 @@ export default function DocsLayout({
               color: "var(--text-dimmed)",
             }}
           >
-            <a href="/docs">&larr; docs</a>
+            <Link href="/docs">&larr; docs</Link>
           </nav>
         )}
       </div>
