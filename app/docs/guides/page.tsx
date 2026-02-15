@@ -14,23 +14,31 @@ export default function GuidesPage() {
   return (
     <article>
       <BreadcrumbJsonLd slug="guides" title="Guides" />
-      <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
+      <h1
+        style={{
+          fontSize: "14px",
+          fontWeight: 600,
+          marginBottom: "2rem",
+          color: "var(--text-muted)",
+        }}
+      >
         Guides
       </h1>
 
       <p style={{ ...muted, marginBottom: "3rem" }}>
-        Silo intercepts syscalls inside the session. Things outside the
-        session&mdash;browsers, GUI database clients, other tools&mdash;need
-        to reach the right IP on their own. These patterns help.
+        Silo intercepts syscalls inside the session. Things outside the session
+        - browsers, GUI database clients, other tools - need to reach the right
+        IP on their own. These patterns help.
       </p>
 
       {/* AI & parallel dev */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Parallel AI coding</h2>
         <p style={muted}>
-          Tools like <a href="https://github.com/silo-rs/vibe-kanban">vibe-kanban</a> spawn
+          Tools like{" "}
+          <a href="https://github.com/silo-rs/vibe-kanban">vibe-kanban</a> spawn
           multiple AI agents that each work on a separate branch. Every agent
-          needs its own dev server&mdash;on the same port.
+          needs its own dev server - on the same port.
         </p>
         <p style={{ ...muted, marginTop: "0.75rem" }}>
           Wrap the dev command with silo and each agent gets an isolated
@@ -42,8 +50,8 @@ agent-2 (feature-cart)  $ silo npm run dev   # 127.0.1.2:3000
 agent-3 (fix-header)    $ silo npm run dev   # 127.0.1.3:3000`}
         </pre>
         <p style={muted}>
-          Silo pairs naturally with any tool that creates worktrees for
-          parallel development&mdash;AI-driven or otherwise.
+          Silo pairs naturally with any tool that creates worktrees for parallel
+          development - AI-driven or otherwise.
         </p>
       </section>
 
@@ -86,44 +94,22 @@ http://feature-auth.my-app.silo:3000`}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Client-side API URLs</h2>
         <p style={muted}>
-          Environment variables like <code>NEXT_PUBLIC_API_URL</code> get baked
-          into the browser bundle at build time. If they point to{" "}
-          <code>localhost:8080</code>, the browser sends requests
-          to <code>127.0.0.1:8080</code>&mdash;where nothing is listening.
+          Browser code runs outside silo, so <code>localhost</code> in the
+          browser resolves to <code>127.0.0.1</code>, not your silo IP.
         </p>
         <p style={{ ...muted, marginTop: "0.75rem" }}>
-          <strong>Fix: proxy through the dev server.</strong> The dev server runs
-          inside silo, so its outbound <code>connect()</code> calls are
-          intercepted automatically.
+          Use the <code>SILO_HOST</code> environment variable to point
+          client-side API URLs at the right address:
         </p>
         <pre style={{ ...code, color: "var(--text-muted)" }}>
-          {`// next.config.js
-async rewrites() {
-  return [{
-    source: "/api/:path*",
-    destination: "http://localhost:8080/:path*",
-  }];
-}`}
+          {`NEXT_PUBLIC_API_URL="http://\${SILO_HOST}:8080" next dev
+VITE_API_URL="http://\${SILO_HOST}:8080" vite dev`}
         </pre>
         <p style={muted}>
-          The browser hits <code>/api/...</code> on the same origin. Next.js
-          proxies it to <code>localhost:8080</code>, which silo rewrites to the
-          session IP. No <code>NEXT_PUBLIC_</code> variable needed.
+          Alternatively, use your framework&apos;s dev server proxy. The dev
+          server runs inside silo, so its outbound requests are intercepted
+          automatically.
         </p>
-        <p style={{ ...muted, marginTop: "0.75rem" }}>
-          Most frameworks have an equivalent: Vite&apos;s{" "}
-          <code>server.proxy</code>, webpack <code>devServer.proxy</code>,
-          Angular <code>proxy.conf.json</code>.
-        </p>
-        <p style={{ ...muted, marginTop: "0.75rem" }}>
-          If a proxy isn&apos;t an option, point the variable at{" "}
-          <code>SILO_HOST</code> in your dev script:
-        </p>
-        <pre style={{ ...code, color: "var(--text-muted)" }}>
-          {`# dev.sh
-export NEXT_PUBLIC_API_URL="http://\${SILO_HOST}:8080"
-next dev`}
-        </pre>
       </section>
 
       {/* Databases */}
@@ -131,12 +117,20 @@ next dev`}
         <h2 style={heading}>Database isolation</h2>
         <p style={muted}>
           Multiple worktrees often share a single database server. Migrations on
-          one branch can break another. Silo doesn&apos;t intercept connections to
-          external databases, but <code>SILO_NAME</code> gives you a stable,
+          one branch can break another. Silo doesn&apos;t intercept connections
+          to external databases, but <code>SILO_NAME</code> gives you a stable,
           per-branch identifier you can use to separate them.
         </p>
 
-        <h3 style={{ fontSize: "13px", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem", color: "var(--text-muted)" }}>
+        <h3
+          style={{
+            fontSize: "13px",
+            fontWeight: 600,
+            marginTop: "1.5rem",
+            marginBottom: "0.5rem",
+            color: "var(--text-muted)",
+          }}
+        >
           Database per branch
         </h3>
         <p style={muted}>
@@ -148,12 +142,20 @@ export DATABASE_URL="postgres://localhost:5432/myapp_\${SILO_NAME}"
 silo npm run dev`}
         </pre>
         <p style={muted}>
-          Branch <code>main</code> connects to <code>myapp_main</code>,
-          branch <code>feature-auth</code> to{" "}
-          <code>myapp_feature-auth</code>. Migrations stay isolated.
+          Branch <code>main</code> connects to <code>myapp_main</code>, branch{" "}
+          <code>feature-auth</code> to <code>myapp_feature-auth</code>.
+          Migrations stay isolated.
         </p>
 
-        <h3 style={{ fontSize: "13px", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem", color: "var(--text-muted)" }}>
+        <h3
+          style={{
+            fontSize: "13px",
+            fontWeight: 600,
+            marginTop: "1.5rem",
+            marginBottom: "0.5rem",
+            color: "var(--text-muted)",
+          }}
+        >
           Database server per branch
         </h3>
         <p style={muted}>
@@ -165,18 +167,25 @@ silo npm run dev`}
 silo npm run dev`}
         </pre>
         <p style={muted}>
-          Both processes share the same session IP. Your app connects
-          to <code>localhost:5432</code> and silo routes it to the right
-          instance.
+          Both processes share the same session IP. Your app connects to{" "}
+          <code>localhost:5432</code> and silo routes it to the right instance.
         </p>
 
-        <h3 style={{ fontSize: "13px", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem", color: "var(--text-muted)" }}>
+        <h3
+          style={{
+            fontSize: "13px",
+            fontWeight: 600,
+            marginTop: "1.5rem",
+            marginBottom: "0.5rem",
+            color: "var(--text-muted)",
+          }}
+        >
           Shared database
         </h3>
         <p style={muted}>
-          If branches don&apos;t touch the schema, sharing is fine. No
-          changes needed&mdash;your app connects to the real database address
-          as usual, and silo only rewrites loopback addresses.
+          If branches don&apos;t touch the schema, sharing is fine. No changes
+          needed - your app connects to the real database address as usual, and
+          silo only rewrites loopback addresses.
         </p>
       </section>
 
@@ -184,9 +193,8 @@ silo npm run dev`}
       <section>
         <h2 style={heading}>GUI database clients &amp; other tools</h2>
         <p style={muted}>
-          Tools like TablePlus, pgAdmin, or Postman run outside silo. To
-          connect to a silo&apos;d service, use the session IP or hostname
-          directly:
+          Tools like TablePlus, pgAdmin, or Postman run outside silo. To connect
+          to a silo&apos;d service, use the session IP or hostname directly:
         </p>
         <pre style={{ ...code, color: "var(--text-muted)" }}>
           {`$ silo ip
