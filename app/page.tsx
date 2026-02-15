@@ -76,6 +76,7 @@ export default function Home() {
               borderRadius: "8px",
               color: "var(--text-muted)",
               fontSize: "13px",
+              overflowX: "auto",
             }}
           >
             {`worktree-a $ npm run dev
@@ -99,6 +100,7 @@ worktree-b $ npm run dev
               borderRadius: "8px",
               color: "var(--text-muted)",
               fontSize: "13px",
+              overflowX: "auto",
             }}
           >
             {`worktree-a $ silo npm run dev
