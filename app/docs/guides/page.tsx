@@ -36,7 +36,7 @@ export default function GuidesPage() {
         <h2 style={heading}>Parallel AI coding</h2>
         <p style={muted}>
           Tools like{" "}
-          <a href="https://github.com/silo-rs/vibe-kanban">vibe-kanban</a> spawn
+          <a href="https://github.com/BloopAI/vibe-kanban">vibe-kanban</a> spawn
           multiple AI agents that each work on a separate branch. Every agent
           needs its own dev server - on the same port.
         </p>
