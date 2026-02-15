@@ -26,8 +26,19 @@ export default function ReferencePage() {
   return (
     <article>
       <BreadcrumbJsonLd slug="reference" title="CLI Reference" />
-      <TechArticleJsonLd slug="reference" title="CLI Reference" description="Complete reference for silo commands, flags, and environment variables." />
-      <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
+      <TechArticleJsonLd
+        slug="reference"
+        title="CLI Reference"
+        description="Complete reference for silo commands, flags, and environment variables."
+      />
+      <h1
+        style={{
+          fontSize: "14px",
+          fontWeight: 600,
+          marginBottom: "2rem",
+          color: "var(--text-muted)",
+        }}
+      >
         CLI Reference
       </h1>
 
@@ -43,23 +54,39 @@ export default function ReferencePage() {
 silo run --name my-session -- npm run dev
 silo run --ip 127.0.5.1 -- cargo run`}
         </pre>
-        <table style={{ width: "100%", fontSize: "13px", borderCollapse: "collapse" }}>
+        <table
+          style={{
+            width: "100%",
+            fontSize: "13px",
+            borderCollapse: "collapse",
+          }}
+        >
           <tbody style={muted}>
             <tr>
-              <td style={cellCode}><code>--name, -n</code></td>
+              <td style={cellCode}>
+                <code>--name, -n</code>
+              </td>
               <td style={cell}>Override session name (default: git branch)</td>
             </tr>
             <tr>
-              <td style={cellCode}><code>--ip</code></td>
+              <td style={cellCode}>
+                <code>--ip</code>
+              </td>
               <td style={cell}>Override IP address (must be in 127.0.0.0/8)</td>
             </tr>
             <tr>
-              <td style={cellCode}><code>--quiet, -q</code></td>
+              <td style={cellCode}>
+                <code>--quiet, -q</code>
+              </td>
               <td style={cell}>Suppress the silo banner</td>
             </tr>
             <tr>
-              <td style={cellCode}><code>--emit-json</code></td>
-              <td style={cell}>Emit session info as JSON to stderr before exec</td>
+              <td style={cellCode}>
+                <code>--emit-json</code>
+              </td>
+              <td style={cell}>
+                Emit session info as JSON to stderr before exec
+              </td>
             </tr>
           </tbody>
         </table>
@@ -76,18 +103,30 @@ silo run --ip 127.0.5.1 -- cargo run`}
           {`eval "$(silo env)"
 silo env --json | jq .SILO_IP`}
         </pre>
-        <table style={{ width: "100%", fontSize: "13px", borderCollapse: "collapse" }}>
+        <table
+          style={{
+            width: "100%",
+            fontSize: "13px",
+            borderCollapse: "collapse",
+          }}
+        >
           <tbody style={muted}>
             <tr>
-              <td style={cellCode}><code>--name, -n</code></td>
+              <td style={cellCode}>
+                <code>--name, -n</code>
+              </td>
               <td style={cell}>Override session name</td>
             </tr>
             <tr>
-              <td style={cellCode}><code>--ip</code></td>
+              <td style={cellCode}>
+                <code>--ip</code>
+              </td>
               <td style={cell}>Override IP address</td>
             </tr>
             <tr>
-              <td style={cellCode}><code>--json</code></td>
+              <td style={cellCode}>
+                <code>--json</code>
+              </td>
               <td style={cell}>Output as JSON instead of shell exports</td>
             </tr>
           </tbody>
@@ -117,9 +156,26 @@ $ silo ip --json
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>silo ls</h2>
         <p style={muted}>
-          List active silo sessions. Shows IP aliases on the loopback
-          interface, their hostnames, directories, and listening ports.
+          List active silo sessions. Shows IP aliases on the loopback interface,
+          their hostnames, directories, and listening ports.
         </p>
+        <table
+          style={{
+            width: "100%",
+            fontSize: "13px",
+            borderCollapse: "collapse",
+            marginBottom: "1rem",
+          }}
+        >
+          <tbody style={muted}>
+            <tr>
+              <td style={cellCode}>
+                <code>--json</code>
+              </td>
+              <td style={cell}>Output as JSON</td>
+            </tr>
+          </tbody>
+        </table>
         <pre style={{ ...code, color: "var(--text-muted)" }}>
           {`$ silo ls
   ● 2 active alias(es)
@@ -134,16 +190,36 @@ $ silo ip --json
         <h2 style={heading}>silo doctor</h2>
         <p style={muted}>
           Check environment and diagnose common problems. Verifies: silo
-          version, OS, git, sudoers config, bind library, /etc/hosts entries,
-          and on Linux: cgroup v2, kernel version, eBPF state.
+          version, OS, git, sudoers config, helper binaries, bind library,
+          /etc/hosts entries, and on Linux: cgroup v2, kernel version, eBPF
+          state.
         </p>
+        <table
+          style={{
+            width: "100%",
+            fontSize: "13px",
+            borderCollapse: "collapse",
+            marginBottom: "1rem",
+          }}
+        >
+          <tbody style={muted}>
+            <tr>
+              <td style={cellCode}>
+                <code>--json</code>
+              </td>
+              <td style={cell}>Output as structured JSON</td>
+            </tr>
+          </tbody>
+        </table>
         <pre style={{ ...code, color: "var(--text-muted)" }}>
           {`$ silo doctor
-  ✓ silo: v0.2.4
+  ✓ silo: v0.3.0
   ✓ os: macOS 15.2
   ✓ git: git version 2.47.1
   ✓ sudoers: /etc/sudoers.d/silo configured
-  ✓ bind lib: /Users/you/.silo/lib/libsilo_bind.dylib
+  ✓ ip helper: /usr/local/libexec/silo-ip-helper (root-owned)
+  ✓ hosts helper: /usr/local/libexec/silo-hosts-helper (root-owned)
+  ✓ bind lib: /usr/local/libexec/libsilo_bind.dylib
   ✓ hosts: 3 silo entry(ies) in /etc/hosts`}
         </pre>
       </section>
@@ -154,18 +230,32 @@ $ silo ip --json
           Remove unused loopback aliases and /etc/hosts entries. By default,
           only removes aliases with no listening ports.
         </p>
-        <table style={{ width: "100%", fontSize: "13px", borderCollapse: "collapse" }}>
+        <table
+          style={{
+            width: "100%",
+            fontSize: "13px",
+            borderCollapse: "collapse",
+          }}
+        >
           <tbody style={muted}>
             <tr>
-              <td style={cellCode}><code>--all</code></td>
-              <td style={cell}>Remove all aliases, even those with active ports</td>
+              <td style={cellCode}>
+                <code>--all</code>
+              </td>
+              <td style={cell}>
+                Remove all aliases, even those with active ports
+              </td>
             </tr>
             <tr>
-              <td style={cellCode}><code>--yes, -y</code></td>
+              <td style={cellCode}>
+                <code>--yes, -y</code>
+              </td>
               <td style={cell}>Skip confirmation prompt</td>
             </tr>
             <tr>
-              <td style={cellCode}><code>--json</code></td>
+              <td style={cellCode}>
+                <code>--json</code>
+              </td>
               <td style={cell}>Output as JSON (implies --yes)</td>
             </tr>
           </tbody>
@@ -185,20 +275,78 @@ $ silo ip --json
         >
           <tbody style={muted}>
             <tr>
-              <td style={cellCode}><code>SILO_IP</code></td>
-              <td style={cell}>Assigned loopback IP (e.g. <code>127.120.134.3</code>)</td>
+              <td style={cellCode}>
+                <code>SILO_IP</code>
+              </td>
+              <td style={cell}>
+                Assigned loopback IP (e.g. <code>127.120.134.3</code>)
+              </td>
             </tr>
             <tr>
-              <td style={cellCode}><code>SILO_NAME</code></td>
-              <td style={cell}>Sanitized session name (e.g. <code>feature-auth</code>)</td>
+              <td style={cellCode}>
+                <code>SILO_NAME</code>
+              </td>
+              <td style={cell}>
+                Sanitized session name (e.g. <code>feature-auth</code>)
+              </td>
             </tr>
             <tr>
-              <td style={cellCode}><code>SILO_DIR</code></td>
+              <td style={cellCode}>
+                <code>SILO_DIR</code>
+              </td>
               <td style={cell}>Git repository root path</td>
             </tr>
             <tr>
-              <td style={cellCode}><code>SILO_HOST</code></td>
-              <td style={cell}>Hostname (e.g. <code>feature-auth.myapp.silo</code>)</td>
+              <td style={cellCode}>
+                <code>SILO_HOST</code>
+              </td>
+              <td style={cell}>
+                Hostname (e.g. <code>feature-auth.myapp.silo</code>)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section style={{ marginBottom: "3rem" }}>
+        <h2 style={heading}>Configuration variables</h2>
+        <p style={muted}>
+          Optional variables you can set to change silo&apos;s behavior:
+        </p>
+        <table
+          style={{
+            width: "100%",
+            marginTop: "1rem",
+            fontSize: "13px",
+            borderCollapse: "collapse",
+          }}
+        >
+          <tbody style={muted}>
+            <tr>
+              <td style={cellCode}>
+                <code>SILO_CONNECT</code>
+              </td>
+              <td style={cell}>
+                Set to <code>0</code> to disable <code>connect()</code>{" "}
+                rewriting. Useful when you don&apos;t want silo to redirect
+                outbound connections.
+              </td>
+            </tr>
+            <tr>
+              <td style={cellCode}>
+                <code>SILO_QUIET</code>
+              </td>
+              <td style={cell}>
+                Suppress the silo session banner (same as <code>--quiet</code>)
+              </td>
+            </tr>
+            <tr>
+              <td style={cellCode}>
+                <code>SILO_LOG</code>
+              </td>
+              <td style={cell}>
+                Control log level (default: <code>ERROR</code>)
+              </td>
             </tr>
           </tbody>
         </table>
@@ -207,8 +355,8 @@ $ silo ip --json
       <section>
         <h2 style={heading}>Linux only</h2>
         <p style={muted}>
-          <code>silo setup-ebpf</code>: load and pin eBPF programs for
-          rootless operation (requires sudo once).
+          <code>silo setup-ebpf</code>: load and pin eBPF programs for rootless
+          operation (requires sudo once).
         </p>
         <p style={{ ...muted, marginTop: "0.5rem" }}>
           <code>silo teardown-ebpf</code>: remove pinned eBPF programs.
