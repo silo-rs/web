@@ -38,121 +38,126 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main
-      style={{
-        minHeight: "100dvh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "2rem",
-        fontSize: "14px",
-        lineHeight: 1.7,
-      }}
-    >
-      <div style={{ maxWidth: "520px", width: "100%" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            fontSize: "13px",
-            marginBottom: "3rem",
-          }}
-        >
-          <Logo />
-          <ThemeToggle />
-        </div>
+        style={{
+          minHeight: "100dvh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "2rem",
+          fontSize: "14px",
+          lineHeight: 1.7,
+        }}
+      >
+        <div style={{ maxWidth: "520px", width: "100%" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontSize: "13px",
+              marginBottom: "3rem",
+            }}
+          >
+            <Logo />
+            <ThemeToggle />
+          </div>
 
-        <p style={{ color: "var(--text-muted)", fontSize: "13px" }}>
-          Git worktrees let you work on multiple branches at once,
-          but every worktree shares the same <code>localhost</code>.
-          When two dev servers try to bind the same port, one fails.
-        </p>
+          <p style={{ color: "var(--text-muted)", fontSize: "13px" }}>
+            Git worktrees let you work on multiple branches at once, but every
+            worktree shares the same <code>localhost</code>. When two dev
+            servers try to bind the same port, one fails.
+          </p>
 
-        <pre
-          style={{
-            margin: "1.5rem 0",
-            padding: "0.75rem 1rem",
-            background: "var(--bg-code)",
-            borderRadius: "8px",
-            color: "var(--text-muted)",
-            fontSize: "13px",
-          }}
-        >
-{`worktree-a $ npm run dev
+          <pre
+            style={{
+              margin: "1.5rem 0",
+              padding: "0.75rem 1rem",
+              background: "var(--bg-code)",
+              borderRadius: "8px",
+              color: "var(--text-muted)",
+              fontSize: "13px",
+            }}
+          >
+            {`worktree-a $ npm run dev
 → listening on localhost:3000       ✓
 
 worktree-b $ npm run dev
 → Error: port 3000 already in use  ✗`}
-        </pre>
+          </pre>
 
-        <p style={{ color: "var(--text-muted)", fontSize: "13px" }}>
-          Silo gives each worktree its own loopback IP.
-          Prefix your command with <code>silo</code> and every worktree
-          can bind the same port without conflict.
-        </p>
+          <p style={{ color: "var(--text-muted)", fontSize: "13px" }}>
+            Silo gives each worktree its own loopback IP. Prefix your command
+            with <code>silo</code> and every worktree can bind the same port
+            without conflict.
+          </p>
 
-        <pre
-          style={{
-            margin: "1.5rem 0",
-            padding: "0.75rem 1rem",
-            background: "var(--bg-code)",
-            borderRadius: "8px",
-            color: "var(--text-muted)",
-            fontSize: "13px",
-          }}
-        >
-{`worktree-a $ silo npm run dev
+          <pre
+            style={{
+              margin: "1.5rem 0",
+              padding: "0.75rem 1rem",
+              background: "var(--bg-code)",
+              borderRadius: "8px",
+              color: "var(--text-muted)",
+              fontSize: "13px",
+            }}
+          >
+            {`worktree-a $ silo npm run dev
 → listening on localhost:3000       ✓  (127.0.1.1)
 
 worktree-b $ silo npm run dev
 → listening on localhost:3000       ✓  (127.0.1.2)`}
-        </pre>
+          </pre>
 
-        <p style={{ color: "var(--text-dimmed)", fontSize: "13px" }}>
-          No code changes. No config files. No containers.
-        </p>
+          <p style={{ color: "var(--text-dimmed)", fontSize: "13px" }}>
+            No code changes. No config files. No containers.
+          </p>
 
-        <InstallScript />
+          <InstallScript />
 
-        {/* Docs */}
-        <section style={{ marginTop: "3rem" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <Link href="/docs/guides" className="card">
-              <span style={{ fontSize: "13px" }}>guides</span>
-              <p style={{ fontSize: "13px", margin: 0 }}>
-                browser access, databases, and other things outside the silo session.
-              </p>
-            </Link>
-            <Link href="/docs/worktrees" className="card">
-              <span style={{ fontSize: "13px" }}>git worktrees</span>
-              <p style={{ fontSize: "13px", margin: 0 }}>
-                why port conflicts happen in worktrees and how silo fixes them.
-              </p>
-            </Link>
-            <Link href="/docs/how-it-works" className="card">
-              <span style={{ fontSize: "13px" }}>how it works</span>
-              <p style={{ fontSize: "13px", margin: 0 }}>
-                IP hashing, syscall interception, and the preload/eBPF backends.
-              </p>
-            </Link>
+          {/* Docs */}
+          <section style={{ marginTop: "3rem" }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
+              <Link href="/docs/guides" className="card">
+                <span style={{ fontSize: "13px" }}>guides</span>
+                <p style={{ fontSize: "13px", margin: 0 }}>
+                  browser access, databases, and other things outside the silo
+                  session.
+                </p>
+              </Link>
+              <Link href="/docs/worktrees" className="card">
+                <span style={{ fontSize: "13px" }}>git worktrees</span>
+                <p style={{ fontSize: "13px", margin: 0 }}>
+                  why port conflicts happen in worktrees and how silo fixes
+                  them.
+                </p>
+              </Link>
+              <Link href="/docs/how-it-works" className="card">
+                <span style={{ fontSize: "13px" }}>how it works</span>
+                <p style={{ fontSize: "13px", margin: 0 }}>
+                  IP hashing, syscall interception, and the preload/eBPF
+                  backends.
+                </p>
+              </Link>
+            </div>
+          </section>
+
+          <div
+            style={{
+              marginTop: "3rem",
+              paddingTop: "1.5rem",
+              borderTop: "1px solid var(--border)",
+              fontSize: "13px",
+              color: "var(--text-dimmed)",
+            }}
+          >
+            <a href="https://github.com/silo-rs/silo">github</a>
+            <span style={{ margin: "0 0.5rem" }}>/</span>
+            <Link href="/docs">docs</Link>
           </div>
-        </section>
-
-        <div
-          style={{
-            marginTop: "3rem",
-            paddingTop: "1.5rem",
-            borderTop: "1px solid var(--border)",
-            fontSize: "13px",
-            color: "var(--text-dimmed)",
-          }}
-        >
-          <a href="https://github.com/silo-rs/silo">github</a>
-          <span style={{ margin: "0 0.5rem" }}>/</span>
-          <Link href="/docs">all docs</Link>
         </div>
-      </div>
-    </main>
+      </main>
     </>
   );
 }
