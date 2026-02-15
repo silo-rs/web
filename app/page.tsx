@@ -114,7 +114,6 @@ worktree-b $ silo npm run dev
 
           <InstallScript />
 
-          {/* Docs */}
           <section style={{ marginTop: "3rem" }}>
             <div
               style={{ display: "flex", flexDirection: "column", gap: "1rem" }}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { code, muted, heading } from "@/app/docs/styles";
-import { BreadcrumbJsonLd, FaqJsonLd } from "@/app/docs/json-ld";
+import { BreadcrumbJsonLd, TechArticleJsonLd, FaqJsonLd } from "@/app/docs/json-ld";
 
 const faqItems = [
   {
@@ -57,6 +57,7 @@ export default function TroubleshootingPage() {
   return (
     <article>
       <BreadcrumbJsonLd slug="troubleshooting" title="Troubleshooting" />
+      <TechArticleJsonLd slug="troubleshooting" title="Troubleshooting" description="Common issues and fixes for silo. SIP warnings, sudoers setup, port conflicts, and more." />
       <FaqJsonLd items={faqItems} />
       <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
         Troubleshooting
@@ -67,7 +68,6 @@ export default function TroubleshootingPage() {
         flags issues.
       </p>
 
-      {/* SIP */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           macOS: &quot;running SIP-protected binary&quot;
@@ -92,7 +92,6 @@ brew install zsh`}
         </p>
       </section>
 
-      {/* sudoers */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           &quot;password required&quot; on every run
@@ -112,7 +111,6 @@ silo doctor`}
         </pre>
       </section>
 
-      {/* not a git repo */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           &quot;not a git repository&quot;
@@ -127,7 +125,6 @@ silo doctor`}
         </pre>
       </section>
 
-      {/* port still in use */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           Port still in use after stopping a server
@@ -146,7 +143,6 @@ silo prune --all`}
         </pre>
       </section>
 
-      {/* IP collision */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           IP collision between worktrees
@@ -165,7 +161,6 @@ silo prune --all`}
         </p>
       </section>
 
-      {/* static binaries */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           Statically linked binaries
@@ -191,7 +186,6 @@ silo ./my-static-binary`}
         </p>
       </section>
 
-      {/* nested silo */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           &quot;already inside a silo session&quot;
@@ -203,7 +197,6 @@ silo ./my-static-binary`}
         </p>
       </section>
 
-      {/* Linux eBPF */}
       <section>
         <h2 style={heading}>
           Linux: eBPF setup

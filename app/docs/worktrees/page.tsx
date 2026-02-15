@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { InstallScript } from "@/app/install-script";
 import { code, muted, heading } from "@/app/docs/styles";
-import { BreadcrumbJsonLd } from "@/app/docs/json-ld";
+import { BreadcrumbJsonLd, TechArticleJsonLd } from "@/app/docs/json-ld";
 
 export const metadata: Metadata = {
   title: "Git Worktrees without Port Conflicts",
@@ -15,11 +15,11 @@ export default function WorktreesGuide() {
   return (
     <article>
       <BreadcrumbJsonLd slug="worktrees" title="Git Worktrees" />
+      <TechArticleJsonLd slug="worktrees" title="Git Worktrees without Port Conflicts" description="Run dev servers in multiple git worktrees simultaneously without port conflicts. Each worktree gets its own loopback IP. No config, no containers." />
       <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
         Git Worktrees without Port Conflicts
       </h1>
 
-      {/* The problem */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           The problem
@@ -38,7 +38,6 @@ export default function WorktreesGuide() {
         </pre>
       </section>
 
-      {/* The fix */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>
           The fix
@@ -59,7 +58,6 @@ export default function WorktreesGuide() {
         </p>
       </section>
 
-      {/* Install */}
       <section>
         <h2 style={heading}>
           Install

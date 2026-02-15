@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { code, muted, heading } from "@/app/docs/styles";
-import { BreadcrumbJsonLd } from "@/app/docs/json-ld";
+import { BreadcrumbJsonLd, TechArticleJsonLd } from "@/app/docs/json-ld";
 
 export const metadata: Metadata = {
   title: "How silo Works",
@@ -14,11 +14,11 @@ export default function HowItWorksPage() {
   return (
     <article>
       <BreadcrumbJsonLd slug="how-it-works" title="How it works" />
+      <TechArticleJsonLd slug="how-it-works" title="How silo Works" description="How silo intercepts syscalls to give each git worktree a unique loopback IP. LD_PRELOAD, eBPF, and the FNV-1a hash." />
       <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
         How it works
       </h1>
 
-      {/* Overview */}
       <section style={{ marginBottom: "3rem" }}>
         <p style={muted}>
           When you run <code>silo npm run dev</code>, three things happen:
@@ -34,7 +34,6 @@ export default function HowItWorksPage() {
         </p>
       </section>
 
-      {/* IP computation */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>IP computation</h2>
         <p style={muted}>
@@ -58,7 +57,6 @@ ip:     127.185.176.25`}
         </p>
       </section>
 
-      {/* Session setup */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Session setup</h2>
         <p style={muted}>Before executing your command, silo:</p>
@@ -80,7 +78,6 @@ sudo ip addr add 127.185.176.25/8 dev lo
         </p>
       </section>
 
-      {/* Syscall interception */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Syscall interception</h2>
         <p style={muted}>
@@ -151,7 +148,6 @@ silo ./my-static-binary`}
         </p>
       </section>
 
-      {/* IPv6 */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>IPv6 handling</h2>
         <p style={muted}>
@@ -163,7 +159,6 @@ silo ./my-static-binary`}
         </p>
       </section>
 
-      {/* SIP */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>macOS SIP bypass</h2>
         <p style={muted}>
@@ -184,7 +179,6 @@ silo ./my-static-binary`}
         </p>
       </section>
 
-      {/* Limitations */}
       <section>
         <h2 style={heading}>Limitations</h2>
         <div style={{ marginTop: "0.5rem", fontSize: "13px", display: "flex", flexDirection: "column", gap: "0.75rem" }}>

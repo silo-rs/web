@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { code, muted, heading } from "@/app/docs/styles";
-import { BreadcrumbJsonLd } from "@/app/docs/json-ld";
+import { BreadcrumbJsonLd, TechArticleJsonLd } from "@/app/docs/json-ld";
 
 export const metadata: Metadata = {
   title: "CLI Reference",
@@ -26,11 +26,11 @@ export default function ReferencePage() {
   return (
     <article>
       <BreadcrumbJsonLd slug="reference" title="CLI Reference" />
+      <TechArticleJsonLd slug="reference" title="CLI Reference" description="Complete reference for silo commands, flags, and environment variables." />
       <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "2rem", color: "var(--text-muted)" }}>
         CLI Reference
       </h1>
 
-      {/* silo run */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>silo run</h2>
         <p style={muted}>
@@ -65,7 +65,6 @@ silo run --ip 127.0.5.1 -- cargo run`}
         </table>
       </section>
 
-      {/* silo env */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>silo env</h2>
         <p style={muted}>
@@ -95,7 +94,6 @@ silo env --json | jq .SILO_IP`}
         </table>
       </section>
 
-      {/* silo ip */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>silo ip</h2>
         <p style={muted}>
@@ -116,7 +114,6 @@ $ silo ip --json
         </pre>
       </section>
 
-      {/* silo ls */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>silo ls</h2>
         <p style={muted}>
@@ -133,7 +130,6 @@ $ silo ip --json
         </pre>
       </section>
 
-      {/* silo doctor */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>silo doctor</h2>
         <p style={muted}>
@@ -152,7 +148,6 @@ $ silo ip --json
         </pre>
       </section>
 
-      {/* silo prune */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>silo prune</h2>
         <p style={muted}>
@@ -177,7 +172,6 @@ $ silo ip --json
         </table>
       </section>
 
-      {/* Environment variables */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Environment variables</h2>
         <p style={muted}>Set automatically inside every silo session:</p>
@@ -210,7 +204,6 @@ $ silo ip --json
         </table>
       </section>
 
-      {/* Linux-only */}
       <section>
         <h2 style={heading}>Linux only</h2>
         <p style={muted}>

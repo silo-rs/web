@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { code, muted, heading } from "@/app/docs/styles";
-import { BreadcrumbJsonLd } from "@/app/docs/json-ld";
+import { BreadcrumbJsonLd, TechArticleJsonLd } from "@/app/docs/json-ld";
 
 export const metadata: Metadata = {
   title: "Guides",
@@ -14,6 +14,7 @@ export default function GuidesPage() {
   return (
     <article>
       <BreadcrumbJsonLd slug="guides" title="Guides" />
+      <TechArticleJsonLd slug="guides" title="Guides" description="Practical patterns for browser access, databases, and other things outside silo's interception layer." />
       <h1
         style={{
           fontSize: "14px",
@@ -31,7 +32,6 @@ export default function GuidesPage() {
         IP on their own. These patterns help.
       </p>
 
-      {/* AI & parallel dev */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Parallel AI coding</h2>
         <p style={muted}>
@@ -55,7 +55,6 @@ agent-3 (fix-header)    $ silo npm run dev   # 127.0.1.3:3000`}
         </p>
       </section>
 
-      {/* Multi-service */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Multi-service</h2>
         <p style={muted}>
@@ -70,7 +69,6 @@ silo turbo run dev        # Turborepo`}
         </pre>
       </section>
 
-      {/* Browser access */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Browser access</h2>
         <p style={muted}>
@@ -90,7 +88,6 @@ http://feature-auth.my-app.silo:3000`}
         </pre>
       </section>
 
-      {/* Client-side API URLs */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Client-side API URLs</h2>
         <p style={muted}>
@@ -112,7 +109,6 @@ VITE_API_URL="http://\${SILO_HOST}:8080" vite dev`}
         </p>
       </section>
 
-      {/* Databases */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={heading}>Database isolation</h2>
         <p style={muted}>
@@ -189,7 +185,6 @@ silo npm run dev`}
         </p>
       </section>
 
-      {/* GUI tools */}
       <section>
         <h2 style={heading}>GUI database clients &amp; other tools</h2>
         <p style={muted}>

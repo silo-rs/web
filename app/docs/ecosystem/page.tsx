@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { muted, heading } from "@/app/docs/styles";
-import { BreadcrumbJsonLd } from "@/app/docs/json-ld";
+import { BreadcrumbJsonLd, TechArticleJsonLd } from "@/app/docs/json-ld";
 
 export const metadata: Metadata = {
   title: "Ecosystem",
@@ -144,18 +144,32 @@ export default function EcosystemPage() {
   return (
     <article>
       <BreadcrumbJsonLd slug="ecosystem" title="Ecosystem" />
-      <h1 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "0.5rem", color: "var(--text-muted)" }}>
+      <TechArticleJsonLd
+        slug="ecosystem"
+        title="Ecosystem"
+        description="Tools that create git worktrees for parallel development. Silo pairs with them to eliminate port conflicts."
+      />
+      <h1
+        style={{
+          fontSize: "14px",
+          fontWeight: 600,
+          marginBottom: "0.5rem",
+          color: "var(--text-muted)",
+        }}
+      >
         Ecosystem
       </h1>
       <p style={{ ...muted, marginBottom: "2rem" }}>
-        Tools that create git worktrees for parallel development. Each
-        worktree isolates code but shares the network. Silo fills the gap.
+        Tools that create git worktrees for parallel development. Each worktree
+        isolates code but shares the network. Silo fills the gap.
       </p>
 
       {categories.map((cat) => (
         <section key={cat.title} style={{ marginBottom: "2.5rem" }}>
           <h2 style={{ ...heading, marginBottom: "1rem" }}>{cat.title}</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+          >
             {cat.items.map((tool) => (
               <a
                 key={tool.name}
@@ -165,9 +179,7 @@ export default function EcosystemPage() {
                 className="card"
               >
                 <span style={{ fontSize: "13px" }}>{tool.name}</span>
-                <p style={{ fontSize: "13px", margin: 0 }}>
-                  {tool.desc}
-                </p>
+                <p style={{ fontSize: "13px", margin: 0 }}>{tool.desc}</p>
               </a>
             ))}
           </div>
